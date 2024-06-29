@@ -15,6 +15,7 @@ import Switch from '@mui/material/Switch'
 import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import './Popup.css'
+import MaterialUISwitch from './components/MaterialUISwitch'
 
 const commonParamsOfNumInput = {
   type: 'number',
@@ -52,14 +53,7 @@ const Popup = () => {
             Pixel Difference
           </Grid>
           <Grid item xs={6} sx={{ textAlign: 'right' }}>
-            <ButtonGroup size="small">
-              <Button variant={show ? 'contained' : 'outlined'} onClick={() => setShow(true)}>
-                展示
-              </Button>
-              <Button variant={!show ? 'contained' : 'outlined'} onClick={() => setShow(false)}>
-                隐藏
-              </Button>
-            </ButtonGroup>
+            <MaterialUISwitch checked={show} onChange={(_, v) => setShow(v)} />
           </Grid>
           <Grid item xs={3}>
             <TextField
@@ -88,10 +82,12 @@ const Popup = () => {
           <Grid item xs={3}>
             <FormControl variant="standard" size="small" sx={{ width: 1, mt: 2 }}>
               <InputLabel shrink>跟随滚动</InputLabel>
-              <Switch 
+              <Switch
                 checked={followScroll}
                 onChange={(_, v) => setFollowScroll(v)}
-              size="small" sx={{ mt: 2.5, ml: -0.5 }} />
+                size="small"
+                sx={{ mt: 2.5, ml: -0.5 }}
+              />
             </FormControl>
           </Grid>
           <Grid item xs={4}>
