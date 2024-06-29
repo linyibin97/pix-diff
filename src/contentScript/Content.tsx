@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useGlobalStore } from '../store'
-import useMouseDrag from './hooks/useMouseDrag'
+import useDrag from './hooks/useDrag'
 
 export const Content: React.FC = () => {
   const show = useGlobalStore((state) => state.show)
@@ -13,7 +13,7 @@ export const Content: React.FC = () => {
   const mixMode = useGlobalStore((state) => state.mixMode)
   const followScroll = useGlobalStore((state) => state.followScroll)
   const setPos = useGlobalStore((state) => state.setPos)
-  const { dragRef, isDragging, dragPos } = useMouseDrag(pos, setPos)
+  const { dragRef } = useDrag(pos, setPos)
 
   if (!show || !new RegExp(filter).test(window.location.href)) {
     return null
@@ -24,14 +24,14 @@ export const Content: React.FC = () => {
       ref={dragRef}
       style={{
         position: followScroll ? 'absolute' : 'fixed',
-        left: `${!isDragging ? pos.x : dragPos.x}px`,
-        top: `${!isDragging ? pos.y : dragPos.y}px`,
         zIndex: pos.z,
         width: `${size.width * scale}px`,
         height: `${size.height * scale}px`,
         overflow: 'hidden',
         opacity: opacity,
         mixBlendMode: mixMode as any,
+        left: `${pos.x}px`,
+        top: `${pos.y}px`,
       }}
     >
       <img src={imgSrc} style={{ width: '100%' }} draggable="false" />
