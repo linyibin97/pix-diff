@@ -1,17 +1,51 @@
 import { create } from 'zustand'
-// or import { createStore } from 'zustand/vanilla'
 import { wrapStore } from 'webext-zustand'
 
-interface BearState {
-  bears: number
-  increase: (by: number) => void
+interface GlobalState {
+  show: boolean
+  setShow: (show: boolean) => void
+  imgSrc: string
+  setImgSrc: (imgSrc: string) => void
+  pos: Position
+  setPos: (pos: Position) => void
+  size: Size
+  setSize: (size: Size) => void
+  scale: number
+  setScale: (scale: number) => void
+  filter: string
+  setFilter: (filter: string) => void
+  opacity: number
+  setOpacity: (opacity: number) => void
+  mixMode: string
+  setMixMode: (mixMode: string) => void
 }
 
-export const useBearStore = create<BearState>()((set) => ({
-  bears: 0,
-  increase: (by) => set((state) => ({ bears: state.bears + by })),
+export const useGlobalStore = create<GlobalState>()((set) => ({
+  show: false,
+  imgSrc: '',
+  pos: {
+    x: 0,
+    y: 0,
+    z: 9999,
+  },
+  size: {
+    width: 0,
+    height: 0,
+  },
+  scale: 1,
+  filter: '.*',
+  opacity: 0.5,
+  mixMode: 'normal',
+  setShow: (show) => set({ show }),
+  setImgSrc: (imgSrc) => set({ imgSrc }),
+  setSize: (size) => set({ size }),
+  setPos: (pos) => set({ pos }),
+  setScale: (scale) => set({ scale }),
+  setFilter: (filter) => set({ filter }),
+  setOpacity: (opacity) => set({ opacity }),
+  setMixMode: (mixMode) => set({ mixMode }),
 }))
 
-export const storeReadyPromise = wrapStore(useBearStore);
+export const storeReadyPromise = wrapStore(useGlobalStore)
 
-export default useBearStore;
+export default useGlobalStore
