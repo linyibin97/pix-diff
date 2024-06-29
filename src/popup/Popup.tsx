@@ -10,10 +10,11 @@ import Select from '@mui/material/Select'
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import Slider from '@mui/material/Slider'
-import Typography from '@mui/material/Typography'
-import MuiInput from '@mui/material/Input'
-import './Popup.css'
 import ImageUpload from './components/ImageUpload'
+import Switch from '@mui/material/Switch'
+import Checkbox from '@mui/material/Checkbox'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import './Popup.css'
 
 const commonParamsOfNumInput = {
   type: 'number',
@@ -40,6 +41,8 @@ const Popup = () => {
   const setOpacity = useGlobalStore((state) => state.setOpacity)
   const mixMode = useGlobalStore((state) => state.mixMode)
   const setMixMode = useGlobalStore((state) => state.setMixMode)
+  const followScroll = useGlobalStore((state) => state.followScroll)
+  const setFollowScroll = useGlobalStore((state) => state.setFollowScroll)
 
   return (
     <main>
@@ -58,7 +61,7 @@ const Popup = () => {
               </Button>
             </ButtonGroup>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={3}>
             <TextField
               label="X坐标"
               value={pos.x}
@@ -66,7 +69,7 @@ const Popup = () => {
               {...commonParamsOfNumInput}
             />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={3}>
             <TextField
               label="Y坐标"
               value={pos.y}
@@ -74,7 +77,7 @@ const Popup = () => {
               {...commonParamsOfNumInput}
             />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={3}>
             <TextField
               label="Z坐标"
               value={pos.z}
@@ -82,14 +85,28 @@ const Popup = () => {
               {...commonParamsOfNumInput}
             />
           </Grid>
+          <Grid item xs={3}>
+            <FormControl variant="standard" size="small" sx={{ width: 1, mt: 2 }}>
+              <InputLabel shrink>跟随滚动</InputLabel>
+              <Switch 
+                checked={followScroll}
+                onChange={(_, v) => setFollowScroll(v)}
+              size="small" sx={{ mt: 2.5, ml: -0.5 }} />
+            </FormControl>
+          </Grid>
           <Grid item xs={4}>
-            <TextField label="宽" value={size.width * scale} disabled {...commonParamsOfNumInput} />
+            <TextField
+              label="宽"
+              value={size.width * scale}
+              onChange={(e) => setScale((+e.target.value || 0) / size.width)}
+              {...commonParamsOfNumInput}
+            />
           </Grid>
           <Grid item xs={4}>
             <TextField
               label="高"
               value={size.height * scale}
-              disabled
+              onChange={(e) => setScale((+e.target.value || 0) / size.height)}
               {...commonParamsOfNumInput}
             />
           </Grid>

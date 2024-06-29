@@ -18,6 +18,8 @@ interface GlobalState {
   setOpacity: (opacity: number) => void
   mixMode: string
   setMixMode: (mixMode: string) => void
+  followScroll: boolean
+  setFollowScroll: (followScroll: boolean) => void
 }
 
 export const useGlobalStore = create<GlobalState>()((set) => ({
@@ -36,6 +38,7 @@ export const useGlobalStore = create<GlobalState>()((set) => ({
   filter: '.*',
   opacity: 0.5,
   mixMode: 'normal',
+  followScroll: false,
   setShow: (show) => set({ show }),
   setImgSrc: (imgSrc) => set({ imgSrc }),
   setSize: (size) => set({ size }),
@@ -44,6 +47,7 @@ export const useGlobalStore = create<GlobalState>()((set) => ({
   setFilter: (filter) => set({ filter }),
   setOpacity: (opacity) => set({ opacity }),
   setMixMode: (mixMode) => set({ mixMode }),
+  setFollowScroll: (followScroll) => set({ followScroll }),
 }))
 
 export const storeReadyPromise = wrapStore(useGlobalStore)
