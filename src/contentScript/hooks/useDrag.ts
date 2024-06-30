@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-export default function useDrag(pos: Position, setPos: (pos: Position) => void) {
+export default function useDrag(show: boolean, pos: Position, setPos: (pos: Position) => void) {
   const dragRef = useRef<HTMLDivElement>(null)
   const dragPos = useRef<{ x: number; y: number }>({ x: 0, y: 0 })
 
@@ -69,7 +69,7 @@ export default function useDrag(pos: Position, setPos: (pos: Position) => void) 
         dragRef.current.removeEventListener('touchstart', handleStart)
       }
     }
-  }, [pos, setPos])
+  }, [show, pos, setPos])
 
   return { dragRef }
 }

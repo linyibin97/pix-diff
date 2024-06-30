@@ -13,7 +13,7 @@ export const Content: React.FC = () => {
   const mixMode = useGlobalStore((state) => state.mixMode)
   const followScroll = useGlobalStore((state) => state.followScroll)
   const setPos = useGlobalStore((state) => state.setPos)
-  const { dragRef } = useDrag(pos, setPos)
+  const { dragRef } = useDrag(show, pos, setPos)
 
   if (!show || !new RegExp(filter).test(window.location.href)) {
     return null

@@ -25,8 +25,8 @@ export default defineManifest({
   },
   content_scripts: [
     {
-      "matches": ["<all_urls>"],
-      // matches: ['http://*/*', 'https://*/*'],
+      // matches: ['<all_urls>'],
+      matches: ['http://*/*', 'https://*/*'],
       js: ['src/contentScript/index.tsx'],
     },
   ],
@@ -37,4 +37,13 @@ export default defineManifest({
     },
   ],
   permissions: ['activeTab', 'storage'],
+  commands: {
+    'toggle-show': {
+      suggested_key: {
+        default: 'Ctrl+Shift+Q',
+        mac: 'Command+Shift+Q',
+      },
+      description: '切换显示',
+    },
+  },
 })

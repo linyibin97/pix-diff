@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from 'react'
 import { useGlobalStore } from '../store'
 import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button'
-import ButtonGroup from '@mui/material/ButtonGroup'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import MenuItem from '@mui/material/MenuItem'
@@ -12,10 +9,9 @@ import InputLabel from '@mui/material/InputLabel'
 import Slider from '@mui/material/Slider'
 import ImageUpload from './components/ImageUpload'
 import Switch from '@mui/material/Switch'
-import Checkbox from '@mui/material/Checkbox'
-import FormControlLabel from '@mui/material/FormControlLabel'
 import './Popup.css'
 import MaterialUISwitch from './components/MaterialUISwitch'
+import { Typography } from '@mui/material'
 
 const commonParamsOfNumInput = {
   type: 'number',
@@ -50,7 +46,7 @@ const Popup = () => {
       <Box>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid item xs={6}>
-            Pixel Difference
+            <Typography variant="subtitle1" style={{color: 'rgba(0,0,0,0.5)'}}>Pixel Difference</Typography>
           </Grid>
           <Grid item xs={6} sx={{ textAlign: 'right' }}>
             <MaterialUISwitch checked={show} onChange={(_, v) => setShow(v)} />
