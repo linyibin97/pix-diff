@@ -40,8 +40,8 @@ export default defineManifest({
   commands: {
     'toggle-show': {
       suggested_key: {
-        default: 'Ctrl+Shift+Q',
-        mac: 'Command+Shift+Q',
+        default: 'Alt+F',
+        mac: 'Alt+F',
       },
       description: '切换显示',
     },
