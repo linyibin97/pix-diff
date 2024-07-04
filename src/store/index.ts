@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { wrapStore } from 'webext-zustand'
 
-interface GlobalState {
+export interface GlobalState {
   show: boolean
   setShow: (show: boolean) => void
   imgSrc: string
